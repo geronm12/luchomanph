@@ -1,19 +1,52 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Spinner} from "react-bootstrap";
+import {values,size} from "lodash";
+import {toast} from "react-toastify";
+import {Sigin, setTokenApi} from "../../../api/login";
 import "./LoginModal.scss";
 
 
 export default function LoginModal (props){
 
-    const {show, setShowModal} = props
+    const { setRefreshLogin} = props
     
     const [formData, setFormData] = useState(initialFormValue())
 
     const [loading, setLoading] = useState(false)
 
+    const [show, setShow] = useState(true);
+
     function onClick(e){
         e.preventDefault()
         
+        let validCount = 0
+
+        values(formData).some(value => {
+            value && validCount++
+            return null
+        })
+
+        if(size(formData) !== validCount){
+            toast.error("Debes completar todos los campos")
+        }else{
+            setLoading(true)
+            Sigin(formData).then(response => {
+                if(response.mensaje){
+                    toast.warning(response.mensaje)
+                }else{
+                    setTokenApi(response.token)
+                    toast.success(`Bienvenido ${formData.email}`)
+                    setRefreshLogin(true)
+                    setShow(false)
+                    
+                }
+            }).catch(err =>{
+                console.log(err)
+                toast.error("Ocurrió un error con el servidor, inténtelo de nuevo más tarde")
+            }).finally(() => {
+                setLoading(false)
+            })
+        }
 
     }
 
@@ -23,7 +56,7 @@ export default function LoginModal (props){
 
     return(
     
-        <Modal show={show}  size="sm">
+        <Modal show={show}   onHide={() => setShow(false)} size="sm"  centered backdrop='static'>
         <Modal.Title>
             <h3>Login</h3>
         </Modal.Title>
@@ -37,12 +70,17 @@ export default function LoginModal (props){
            </Form.Control>
         </Form.Group>
            <Form.Group className="button-div">
-           <Button onClick={onClick}>Ingresar</Button>
+          <Button onClick={onClick}> 
+          {loading  ? <Spinner animation="border" variant="light"/> 
+          
+          : 
+          "Iniciar Sesión"
+          }</Button> 
            
         </Form.Group>
         </Modal.Body>
         </Modal>
-     
+       
     )
 
 

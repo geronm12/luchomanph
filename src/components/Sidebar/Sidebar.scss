@@ -1,0 +1,15 @@
+.sidebar{
+    background-color: blue;
+    min-height: 100vh;
+    border-right: 1px solid black;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+   .list-group{
+       width: 100% !important;
+   }
+
+}

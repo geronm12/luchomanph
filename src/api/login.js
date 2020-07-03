@@ -55,7 +55,8 @@ export function isUserLogedApi(){
     }
 
 
-    is(isExpired(token)){
+    if(isExpired(token))
+    {
         logoutApi();
     }
 
@@ -63,7 +64,7 @@ export function isUserLogedApi(){
 }
 
 
-function isExpired(token){
+ function isExpired(token) {
     const {exp} = JwtDecode(token);
     const expire = exp * 1000;
     const timeout = expire - Date.now();
