@@ -1,15 +1,39 @@
 .sidebar{
-    background-color: blue;
+    background-color: #4E3B66;
     min-height: 100vh;
-    border-right: 1px solid black;
+    border-right: 18px solid #8868B3;
     padding: 0;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    font-size: 25px;
+    border-radius: 20px;
    .list-group{
        width: 100% !important;
+       background-color: #4E3B66;
+        
+       a,button{
+           margin-bottom:1px solid black !important;
+           background-color: #4E3B66;
+           align-items: center;
+           display: flex;
+           justify-content: center;
+           border: none;
+           text-decoration: none;
+           color: white;
+           height: 30px;
+           margin-bottom: 25px;
+           &:hover{
+               background-color: #8868B3;
+           }
+ 
+        }
+
+       
+
+       
+
    }
 
 }

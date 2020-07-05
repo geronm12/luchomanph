@@ -1,21 +1,27 @@
 import React from 'react';
-import {ButtonToolbar, ButtonGroup, Button} from "react-bootstrap";
+import {ButtonToolbar, ButtonGroup, Button, Overlay, OverlayTrigger} from "react-bootstrap";
+import "./Buttons.scss";
+import ReactTooltip  from "react-tooltip";
 
-export default function Buttons() {
+
+
+export default function  Buttons() {
     return (
-        <ButtonToolbar aria-label="Toolbar with button groups">
-  <ButtonGroup className="mr-2" aria-label="First group">
-    <Button>C</Button> 
-  </ButtonGroup>
-  <ButtonGroup className="mr-2" aria-label="Second group">
-    <Button>M</Button>  
-  </ButtonGroup>
-  <ButtonGroup aria-label="Third group">
-    <Button>E</Button>
-  </ButtonGroup>
-  <ButtonGroup aria-label="Third group">
-    <Button>AF</Button>
-  </ButtonGroup>
-</ButtonToolbar>
+       <div className="actions">
+        <Button data-tip="Crear">
+        C
+        </Button>
+        <Button data-tip="Modificar">
+        M
+        </Button>
+        <Button data-tip="Eliminar">
+        E
+        </Button>
+        <Button data-tip="Agregar foto">
+        F
+        </Button>
+        <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
+       </div>
     )
+       
 }

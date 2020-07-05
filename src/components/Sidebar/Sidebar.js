@@ -10,18 +10,20 @@ export default function Sidebar(props) {
     const Logout = () => {
         logoutApi();
         setRefreshLogin(true);
+        
+        return (<Link to=""></Link>)
     }
 
     return (
         <div className="sidebar">
            <ListGroup as="ul">
-            <ListGroupItem><Image></Image></ListGroupItem>
-            <ListGroupItem><Link to="/">Home</Link></ListGroupItem>
-            <ListGroupItem as="li"><Link to="/albums">Albums</Link></ListGroupItem>
-            <ListGroupItem as="li"><Link to="/posts">Posts</Link></ListGroupItem>
-            <ListGroupItem as="li"><Link to="/perfil">Perfil</Link></ListGroupItem>
+            <Image></Image>                 
+            <Link to="/">Home</Link>        
+            <Link to="/albums">Albums</Link>
+            <Link to="/posts">Posts</Link>  
+            <Link to="/perfil">Perfil</Link>
             <ListGroup.Item action onClick={Logout}>
-             <Link to="">Salir</Link>
+             Salir
             </ListGroup.Item>
             </ListGroup>
         </div>

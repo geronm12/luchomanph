@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import BasicLayout from "../../components/Layouts/BasicLayout";
-import BasicConsulta from "../../components/Consulta/BasicConsulta";
+import Consulta from "../../components/Consulta/ConsultaAlbums";
 import {GetAlbums} from "../../api/albums";
 
 export default function ABMAlbums(props) {
@@ -27,8 +27,7 @@ export default function ABMAlbums(props) {
 
     return (
         <BasicLayout setRefreshLogin={setRefreshLogin}> 
-        <BasicConsulta setRefreshAlbums={setRefreshAlbums}>
-        </BasicConsulta>   
+        <Consulta setRefreshAlbums={setRefreshAlbums}/>
         </BasicLayout>
     )
 }

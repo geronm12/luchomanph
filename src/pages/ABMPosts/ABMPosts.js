@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import BasicLayout from "../../components/Layouts/BasicLayout";
-import BasicConsulta from "../../components/Consulta/BasicConsulta";
+import Consulta from "../../components/Consulta/ConsultaPosts";
 import {GetPosts} from "../../api/posts";
 
 export default function ABMPosts(props) {
@@ -17,8 +17,9 @@ export default function ABMPosts(props) {
          
        GetPosts(page).then(response => {
         if(!response){
-            setPage(2);
+            setPage(1);
         }   
+        
         setPosts(response)
            
        }).catch(err => {
@@ -31,8 +32,7 @@ export default function ABMPosts(props) {
 
     return (
         <BasicLayout setRefreshLogin={setRefreshLogin}>
-        <BasicConsulta lista={posts} setRefreshPosts = {setRefreshPosts}  pages={page} setPage={setPage}>
-        </BasicConsulta>
+        <Consulta lista={posts} setRefreshPosts = {setRefreshPosts}  pages={page} setPage={setPage}/>
         </BasicLayout>
     )
 }

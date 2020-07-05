@@ -1,0 +1,46 @@
+.no-data{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    margin-top: 20px;
+    
+    button{
+
+        width: 300px;
+        height: 40px;
+        font-size: 25px;
+        padding: 0;
+        background-color: #4E3B66;
+        border: none;
+        
+    }
+}
+
+
+
+.tabla{
+     margin-top: 20px;
+
+ }
+
+
+
+.button-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >button{
+        margin-left: 5px;
+    }
+
+     button{
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         padding: 0;
+         background-color: #4E3B66;
+         border: none;
+     }
+ }

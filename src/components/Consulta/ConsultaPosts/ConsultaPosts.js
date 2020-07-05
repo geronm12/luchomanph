@@ -2,20 +2,19 @@ import React, {useState, useEffect} from 'react';
 import {Table, ButtonToolbar, ButtonGroup, Button} from "react-bootstrap";
 import {map} from "lodash";
 import Buttons from "../../Buttons";
- 
-export default function BasicConsulta(props) {
-
-    const {lista, pages, setPage, setRefreshPosts, setRefreshAlbums} = props;
-
-    const botones = [1,2,3]
+import "../Consulta.scss"; 
 
 
-    
+export default function ConsultaPosts(props) {
+
+    const {lista, pages, setPage, setRefreshPosts} = props;
+
+     
+  
     function nextPage(){
          let newPage = pages + 1;
         setPage(newPage);
         setRefreshPosts(true);
-        setRefreshAlbums(true);
     }
 
     function previousPage(){
@@ -23,14 +22,31 @@ export default function BasicConsulta(props) {
         let prevPage = pages - 1;
         setPage(prevPage);
         setRefreshPosts(true);
-        setRefreshAlbums(true);
         }
         
     }
+
+    function onCreate(e){
+        console.log(e);
+    
+    }
+
+    if (!lista){
+        return (
+            <div className="no-data">
+ 
+               <Button onClick={onCreate}>Crear</Button>
+   
+            </div>
+        )
+    }
     
     return (
-        <Table striped bordered hover variant="dark">
+        <div>
+             
+        <Table striped bordered hover className="tabla">
             <thead>
+           
              <tr>
             <th>Fecha</th>
             <th>Carpeta</th>
@@ -40,25 +56,22 @@ export default function BasicConsulta(props) {
             </tr>
             </thead>
             <tbody>
-            {map(lista,(objeto, index)=> (
-                
-                <tr key={objeto._id}>
+          
+            {map(lista,(objeto)=> (
+             <tr key={objeto._id}>
                 <th>{objeto.fecha ? objeto.fecha : objeto.fechaCreacion}</th>
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
                 <th>{objeto.fotos.length}</th>
                 <th><Buttons/></th>
-                
-              </tr>
+             </tr>
             ))}
             </tbody>
-            <ButtonToolbar aria-label="Toolbar with button groups">
-                <ButtonGroup className="mr-2" aria-label="First group">
+          
+       </Table>
+                <div className="button-group">
                     <Button  onClick={previousPage}>Prev</Button>
                     <Button  onClick={nextPage}>Next</Button>
-                </ButtonGroup>
-            </ButtonToolbar>
-       </Table>
-
-    )
+                </div>
+       </div>)
 }
