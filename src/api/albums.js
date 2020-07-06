@@ -1,5 +1,5 @@
 import {PATH, TOKEN} from "../utils/consts";
-
+import {getTokenApi} from "./login";
 
 
 export function GetAlbums(page){
@@ -45,4 +45,36 @@ export function GetAlbumsById(id){
     })
 
 
+}
+
+
+
+export function CreateAlbums(files, title){
+
+  const url = `${PATH}/crearAlbum`;
+
+  const formData = new FormData();
+
+  files.forEach(file => {
+       formData.append("files", file) 
+  });
+
+
+  formData.append("titulo", title);
+ 
+
+  const params = {
+      method: 'POST',
+      headers:{
+          Authorization: `Bearer ${getTokenApi()}`
+      },
+      body: formData
+    };
+
+
+    return fetch(url, params).then(response => {
+        return response;
+    }).catch(err => {
+        return err;
+    });
 }

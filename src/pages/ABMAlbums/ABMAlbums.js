@@ -10,24 +10,21 @@ export default function ABMAlbums(props) {
 
     const [refreshAlbums, setRefreshAlbums] = useState(false);
 
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        GetAlbums(1).then(response => {
-           console.log(response)
+        GetAlbums(page).then(response => {
            setAlbums(response)
-       }).catch(err => {
+        }).catch(err => {
             setAlbums(null);
        })
 
-    },[refreshAlbums])
+    },[refreshAlbums, page])
 
-
-
-
-
+ 
     return (
         <BasicLayout setRefreshLogin={setRefreshLogin}> 
-        <Consulta setRefreshAlbums={setRefreshAlbums}/>
+        <Consulta setRefreshAlbums={setRefreshAlbums} lista={albums} setPage={setPage} pages={page}/>
         </BasicLayout>
     )
 }

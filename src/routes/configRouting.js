@@ -1,7 +1,7 @@
 import Home from "../pages/Home";
 import ABMPosts from "../pages/ABMPosts";
 import ABMAlbums from "../pages/ABMAlbums";
-import Perfil from "../pages/Perfil";
+ 
 
 export default [
 
@@ -23,10 +23,8 @@ export default [
         
     },
     {
-        path: "/perfil",
-        exact: true,
-        page: Perfil
-        
+        path: "*",
+        page: "ERROR404"
     }
 
 ];

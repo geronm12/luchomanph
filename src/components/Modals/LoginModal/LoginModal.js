@@ -56,7 +56,7 @@ export default function LoginModal (props){
 
     return(
     
-        <Modal show={show}   onHide={() => setShow(false)} size="sm"  centered backdrop='static'>
+        <Modal show={show}   onHide={() => setShow(false)}  size="lg" backdrop='static'>
         <Modal.Title>
             <h3>Login</h3>
         </Modal.Title>
@@ -80,7 +80,7 @@ export default function LoginModal (props){
         </Form.Group>
         </Modal.Body>
         </Modal>
-       
+  
     )
 
 

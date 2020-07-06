@@ -21,8 +21,7 @@ export default function Sidebar(props) {
             <Link to="/">Home</Link>        
             <Link to="/albums">Albums</Link>
             <Link to="/posts">Posts</Link>  
-            <Link to="/perfil">Perfil</Link>
-            <ListGroup.Item action onClick={Logout}>
+             <ListGroup.Item action onClick={Logout}>
              Salir
             </ListGroup.Item>
             </ListGroup>

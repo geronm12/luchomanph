@@ -1,22 +1,30 @@
-import React from 'react';
-import {ButtonToolbar, ButtonGroup, Button, Overlay, OverlayTrigger} from "react-bootstrap";
+import React, {useState, useEffect} from 'react';
+import {Button} from "react-bootstrap";
 import "./Buttons.scss";
 import ReactTooltip  from "react-tooltip";
-
-
+import FormModal from '../Modals/FormModal';
+import {AltaAlbums, ModificaAlbums, EliminaAlbums} from '../ABM/ABMAlbums/ABMAlbums';
 
 export default function  Buttons() {
+
+    const [show, setShow] = useState(false);
+    
+
     return (
        <div className="actions">
-        <Button data-tip="Crear">
-        C
-        </Button>
+       
         <Button data-tip="Modificar">
         M
         </Button>
+        <FormModal show={false}>
+        <ModificaAlbums/>         
+        </FormModal>
         <Button data-tip="Eliminar">
         E
         </Button>
+        <FormModal show={false}>
+        <EliminaAlbums/>
+        </FormModal>
         <Button data-tip="Agregar foto">
         F
         </Button>

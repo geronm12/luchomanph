@@ -1,5 +1,5 @@
 import {PATH, TOKEN} from "../utils/consts";
-
+import {getTokenApi} from "./login";
 
 
 export function GetPosts(page){
@@ -47,3 +47,36 @@ export function GetPostsById(id){
 
 
 }
+
+
+export function CreatePosts(files, data){
+
+    const url = `${PATH}/crearPost`;
+  
+    const formData = new FormData();
+  
+    files.forEach(file => {
+         formData.append("files", file) 
+    });
+  
+  
+    formData.append("titulo", data.titulo);
+    formData.append("cuerpo", data.cuerpo);
+    formData.append("folder", data.carpeta);
+  
+     
+    const params = {
+        method: 'POST',
+        headers:{
+            Authorization: `Bearer ${getTokenApi()}`
+        },
+        body: formData
+      };
+  
+  
+      return fetch(url, params).then(response => {
+          return response;
+      }).catch(err => {
+          return err;
+      });
+  }

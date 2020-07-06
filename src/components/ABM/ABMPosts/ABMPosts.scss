@@ -1,0 +1,12 @@
+.abm-posts{
+
+    padding:0;
+
+    &__post-files{
+        background-color: red;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+    }
+}

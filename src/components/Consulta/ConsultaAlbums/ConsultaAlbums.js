@@ -2,42 +2,47 @@ import React, {useState, useEffect} from 'react';
 import {Table, ButtonToolbar, ButtonGroup, Button} from "react-bootstrap";
 import {map} from "lodash";
 import Buttons from "../../Buttons";
+import FormModal from "../../Modals/FormModal";
+import {AltaAlbums} from "../../ABM/ABMAlbums/ABMAlbums";
 import "../Consulta.scss";
+import ReactTooltip from "react-tooltip";
 
 export default function ConsultaAlbums(props) {
 
     const {lista, pages, setPage,  setRefreshAlbums} = props;
- 
+    const [show, setShow] = useState(false);
+
     function nextPage(){
          let newPage = pages + 1;
-        setPage(newPage);
-    
-        setRefreshAlbums(true);
+         setRefreshAlbums(true);
+         setPage(newPage);
     }
 
     function previousPage(){
         if (pages > 1){
         let prevPage = pages - 1;
         setPage(prevPage);
-       
-        setRefreshAlbums(true);
+         setRefreshAlbums(true);
         }
         
+    }
+
+    function showModal(){
+        setShow(true);
     }
    
    
     if (!lista){
         return (
-            <div className="no-data">
-              <Button>Crear</Button>
-           </div>
+            <CrearButton show={show} showModal={showModal} setShow={setShow} setRefreshAlbums={setRefreshAlbums}/>
         )
     }
+   
   
     return (
         <div>
-            
-        <Table striped bordered hover className="tabla">
+               <CrearButton show={show} showModal={showModal} setShow={setShow} setRefreshAlbums={setRefreshAlbums} />
+            <Table striped bordered hover className="tabla">
             <thead>
            
              <tr>
@@ -62,12 +67,24 @@ export default function ConsultaAlbums(props) {
             </tbody>
           
        </Table>
-       <ButtonToolbar aria-label="Toolbar with button groups" className="button-group">
-                <ButtonGroup className="mr-2" aria-label="First group">
+                 <div className="button-group">
                     <Button  onClick={previousPage}>Prev</Button>
                     <Button  onClick={nextPage}>Next</Button>
-                </ButtonGroup>
-            </ButtonToolbar>
+                </div>
+            <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
        </div>
     )
+}
+
+
+function CrearButton(props){
+
+    const {show, showModal, setShow, setRefreshAlbums} = props;
+
+    return <div className="no-data">
+           <Button data-tip="Crear" onClick={showModal}>Crear</Button>
+            <FormModal show={show} setShow={setShow}>
+             <AltaAlbums setShow={setShow} setRefreshAlbums={setRefreshAlbums}/>
+            </FormModal>
+            </div>
 }

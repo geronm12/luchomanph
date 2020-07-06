@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Table, ButtonToolbar, ButtonGroup, Button} from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 import {map} from "lodash";
+import  FormModal from "../../Modals/FormModal";
+import {AltaPosts} from "../../ABM/ABMPosts/ABMPosts";
 import Buttons from "../../Buttons";
 import "../Consulta.scss"; 
 
@@ -9,6 +11,7 @@ export default function ConsultaPosts(props) {
 
     const {lista, pages, setPage, setRefreshPosts} = props;
 
+    const [show, setShow] = useState(false);
      
   
     function nextPage(){
@@ -25,25 +28,20 @@ export default function ConsultaPosts(props) {
         }
         
     }
-
-    function onCreate(e){
-        console.log(e);
     
+    function showModal(){
+            setShow(true);
     }
 
     if (!lista){
         return (
-            <div className="no-data">
- 
-               <Button onClick={onCreate}>Crear</Button>
-   
-            </div>
+            <CrearButton show={show} setShow={setShow} showModal={showModal} setRefreshPosts={setRefreshPosts}/>
         )
     }
-    
+ 
     return (
         <div>
-             
+            <CrearButton show={show} setShow={setShow} showModal={showModal} setRefreshPosts={setRefreshPosts}/>
         <Table striped bordered hover className="tabla">
             <thead>
            
@@ -74,4 +72,16 @@ export default function ConsultaPosts(props) {
                     <Button  onClick={nextPage}>Next</Button>
                 </div>
        </div>)
+}
+
+function CrearButton(props){
+
+    const {show, showModal, setShow, setRefreshPosts} = props;
+
+    return <div className="no-data">
+           <Button data-tip="Crear" onClick={showModal}>Crear</Button>
+            <FormModal show={show} setShow={setShow}>
+             <AltaPosts setShow={setShow} setRefreshPosts={setRefreshPosts}/>
+            </FormModal>
+            </div>
 }

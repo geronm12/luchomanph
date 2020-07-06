@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-    
-    
+
+ .modal-dialog.modal-lg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+
     .modal-content{
         background: rgb(123,36,28);
         background: linear-gradient(90deg, rgba(123,36,28,1) 35%, rgba(146,43,33,1) 50%, rgba(146,43,33,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%);
         align-items: center;
         justify-content: center;
-        width: 400px !important;
-        height: 300px !important;
+        width: 500px !important;
+        height: 400px !important;
         border-radius: 10% !important;
         flex-direction: column;
         overflow: hidden;
-        
+        align-self: center;
 
         h3{
             font-size: 50px;
@@ -92,3 +97,5 @@
      }
 
  
+
+    }
