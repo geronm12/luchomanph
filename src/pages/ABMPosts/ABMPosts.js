@@ -5,7 +5,7 @@ import {GetPosts} from "../../api/posts";
 
 export default function ABMPosts(props) {
 
-    const {setRefreshLogin} = props;
+    const {setRefreshLogin,active} = props;
     
     const [posts, setPosts] = useState(null);
 
@@ -21,6 +21,7 @@ export default function ABMPosts(props) {
         }   
         
         setPosts(response)
+        setRefreshPosts(false);
            
        }).catch(err => {
            setPosts(null);
@@ -31,7 +32,7 @@ export default function ABMPosts(props) {
 
 
     return (
-        <BasicLayout setRefreshLogin={setRefreshLogin}>
+        <BasicLayout setRefreshLogin={setRefreshLogin} active={active}>
         <Consulta lista={posts} setRefreshPosts = {setRefreshPosts}  pages={page} setPage={setPage}/>
         </BasicLayout>
     )

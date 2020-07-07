@@ -80,3 +80,43 @@ export function CreatePosts(files, data){
           return err;
       });
   }
+
+
+
+  export function UpdatePost(id, data){
+
+    const url = `${PATH}/modificarPost?postid=${id}`;
+
+    const params = {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${getTokenApi()}`
+        },
+        body: JSON.stringify(data)
+    }
+
+
+    return fetch(url, params).then(response => {
+   
+        return response;
+    }).catch(err => {
+        return err;
+    });
+
+}   
+
+
+export function DeletePost(id){
+
+    const url = `${PATH}/eliminarPost?postid=${id}`;
+
+    const params ={
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${getTokenApi()}`
+        }
+    }
+
+    return fetch(url, params).then(response => response).catch(err => err);
+
+}

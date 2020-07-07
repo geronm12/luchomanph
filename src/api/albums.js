@@ -78,3 +78,41 @@ export function CreateAlbums(files, title){
         return err;
     });
 }
+
+
+export function UpdateAlbums(id, title){
+
+    const url = `${PATH}/modificarAlbum?albumid=${id}`;
+
+    const params = {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${getTokenApi()}`
+        },
+        body: JSON.stringify(title)
+    }
+
+
+    return fetch(url, params).then(response => {
+         return response;
+    }).catch(err => {
+        return err;
+    });
+
+}   
+
+
+export function DeleteAlbum(id){
+
+    const url = `${PATH}/eliminarAlbum?albumid=${id}`;
+
+    const params ={
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${getTokenApi()}`
+        }
+    }
+
+    return fetch(url, params).then(response => response).catch(err => err);
+
+}

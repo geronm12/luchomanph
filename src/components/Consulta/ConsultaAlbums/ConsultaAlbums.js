@@ -44,8 +44,7 @@ export default function ConsultaAlbums(props) {
                <CrearButton show={show} showModal={showModal} setShow={setShow} setRefreshAlbums={setRefreshAlbums} />
             <Table striped bordered hover className="tabla">
             <thead>
-           
-             <tr>
+              <tr>
             <th>Fecha</th>
             <th>Carpeta</th>
             <th>Titulo</th>
@@ -61,7 +60,7 @@ export default function ConsultaAlbums(props) {
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
                 <th>{objeto.fotos.length}</th>
-                <th><Buttons/></th>
+                <th><Buttons entidad={objeto} setRefreshAlbums={setRefreshAlbums}/></th>
              </tr>
             ))}
             </tbody>

@@ -12,7 +12,7 @@ export default function Routing(props){
             <Switch>
              {map(configRouting, (route, index) => (
              <Route key={index} path={route.path} exact={route.exact} >
-                <route.page setRefreshLogin={setRefreshLogin}/> 
+                <route.page setRefreshLogin={setRefreshLogin} active={route.active}/> 
              </Route>    
              ))}
             </Switch>

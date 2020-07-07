@@ -4,7 +4,7 @@ import Consulta from "../../components/Consulta/ConsultaAlbums";
 import {GetAlbums} from "../../api/albums";
 
 export default function ABMAlbums(props) {
-    const {setRefreshLogin} = props;
+    const {setRefreshLogin, active} = props;
  
     const [albums, setAlbums] = useState(null);
 
@@ -15,6 +15,7 @@ export default function ABMAlbums(props) {
     useEffect(() => {
         GetAlbums(page).then(response => {
            setAlbums(response)
+           setRefreshAlbums(false);
         }).catch(err => {
             setAlbums(null);
        })
@@ -23,7 +24,7 @@ export default function ABMAlbums(props) {
 
  
     return (
-        <BasicLayout setRefreshLogin={setRefreshLogin}> 
+        <BasicLayout setRefreshLogin={setRefreshLogin} active={active}> 
         <Consulta setRefreshAlbums={setRefreshAlbums} lista={albums} setPage={setPage} pages={page}/>
         </BasicLayout>
     )

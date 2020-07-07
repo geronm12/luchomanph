@@ -8,18 +8,21 @@ export default [
     {
         path: "/",
         exact: true,
-        page: Home
+        page: Home,
+        active: 1
     },
     {
         path: "/posts",
         exact: true,
-        page: ABMPosts
+        page: ABMPosts,
+        active: 2
         
     },
     {
         path: "/albums",
         exact: true,
-        page: ABMAlbums
+        page: ABMAlbums,
+        active: 3
         
     },
     {

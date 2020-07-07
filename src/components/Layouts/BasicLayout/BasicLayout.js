@@ -8,14 +8,14 @@ import Sidebar from "../../Sidebar";
 export default function BasicLayout(props){
 
 
-    const {children, setRefreshLogin} = props;
+    const {children, setRefreshLogin, active} = props;
 
     return(
        
         <Container fluid>
             <Row >
             <Col xs={2}>
-            <Sidebar  setRefreshLogin={setRefreshLogin}/>        
+            <Sidebar  setRefreshLogin={setRefreshLogin} active={active}/>        
             </Col>
             <Col xs={9}>
             {children}

@@ -61,7 +61,7 @@ export default function ConsultaPosts(props) {
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
                 <th>{objeto.fotos.length}</th>
-                <th><Buttons/></th>
+                <th><Buttons entidad={objeto} setRefreshPosts={setRefreshPosts}/></th>
              </tr>
             ))}
             </tbody>

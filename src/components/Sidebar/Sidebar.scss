@@ -1,39 +1,48 @@
 .sidebar{
-    background-color: #4E3B66;
+    background-color: #150A24;
     min-height: 100vh;
-    border-right: 18px solid #8868B3;
+    border-right: 1px solid #8868B3;
     padding: 0;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 25px;
-    border-radius: 20px;
-   .list-group{
-       width: 100% !important;
-       background-color: #4E3B66;
+   
+     
+    &__item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+        color: white;
+        text-decoration: none;
+        border: none;
+        padding: 0;
         
-       a,button{
-           margin-bottom:1px solid black !important;
-           background-color: #4E3B66;
-           align-items: center;
-           display: flex;
-           justify-content: center;
-           border: none;
-           text-decoration: none;
-           color: white;
-           height: 30px;
-           margin-bottom: 25px;
-           &:hover{
-               background-color: #8868B3;
-           }
- 
+        
+        &:hover{
+            text-decoration: none;
         }
 
-       
+         
+        &.list-group-item.list-group-item-action{
+            background-color: #150A24;
+            
+            &:active, &:focus{
+                border:none;
+                outline: none;
+            }
 
-       
+        }   
 
-   }
+    }
+   
 
+    .pressed{
+        font-size: 55px;
+        color: blue;
+        font-weight: bold;
+    }
 }
