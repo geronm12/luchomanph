@@ -3,6 +3,10 @@ import {Form, FormGroup, FormControl, Button} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
 import {toast} from "react-toastify";
 import {CreatePosts, DeletePost, UpdatePost} from "../../../api/posts";
+
+import Check from "../../../assets/svg/check-white-36dp.svg";
+import Close from "../../../assets/svg/close-white-36dp.svg";
+import Camara from "../../../assets/png/outline_add_a_photo_white_36dp.png";
 import "./ABMPosts.scss";
 
 
@@ -60,8 +64,8 @@ export  function AltaPosts(props) {
     }
 
     return (
-        <Form className="abm-posts">
-            <div {...getRootFilesProps()} className="abm-posts__post-files">
+        <Form className="crear-post">
+            <div {...getRootFilesProps()} className="crear-post__files">
             <input {...getInputFilesProps()} />
             </div>
             <FormGroup>
@@ -114,16 +118,17 @@ export function ModificaPosts(props){
     }
 
     return (
-    <Form>
-        <FormGroup>
+    <Form className="modificar-post">
+        <h2>Editar</h2> 
+        <FormGroup className="modificar-post__titulo">
             <FormControl type="text" placeholder="titulo" defaultValue={post.titulo} onChange={setChange} name="titulo"/>
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="modificar-post__cuerpo">
             <FormControl type="text" as="textarea" placeholder="Cuerpo" defaultValue={post.cuerpo} onChange={setChange} name="cuerpo"/>
         </FormGroup>
-        <FormGroup>
-            <Button onClick={updatePost}>Guardar</Button>
-            <Button onClick={() => setShow(false)}>Cancelar</Button>
+        <FormGroup className="modificar-post__buttons">
+            <Button onClick={updatePost}><img src={Check}/></Button>
+            <Button onClick={() => setShow(false)}><img src={Close}/></Button>
         </FormGroup>
     </Form>);
 
@@ -154,13 +159,12 @@ export function EliminaPosts(props){
 
 
     return(
-        <Form>
-            <FormGroup>
-                <h2>¿Estás seguro que deseas eliminar el post?</h2>
-            </FormGroup>
-            <FormGroup>
-                <Button onClick={eliminarPost}>Ok</Button>
-                <Button onClick={() => setShow(false)}>Cancelar</Button>
+        <Form className="eliminar-post">
+            <h2>¿ Desea eliminar el Post ?</h2>
+            <div className="eliminar-post__divider"></div>
+            <FormGroup className="eliminar-post__buttons">
+                <Button onClick={eliminarPost}><img src={Check}/></Button>
+                <Button onClick={() => setShow(false)}><img src={Close}/></Button>
             </FormGroup>
         </Form>
     )

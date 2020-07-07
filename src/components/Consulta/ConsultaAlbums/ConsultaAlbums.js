@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {Table, ButtonToolbar, ButtonGroup, Button} from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 import {map} from "lodash";
+import moment from "moment";
+import localization from "moment/locale/es";
+
 import Buttons from "../../Buttons";
 import FormModal from "../../Modals/FormModal";
 import {AltaAlbums} from "../../ABM/ABMAlbums/ABMAlbums";
+import Next from "../../../assets/svg/navigate_next-white-24dp.svg";
+import Back from "../../../assets/svg/navigate_before-white-24dp.svg";
+
+
 import "../Consulta.scss";
 import ReactTooltip from "react-tooltip";
 
@@ -56,7 +63,7 @@ export default function ConsultaAlbums(props) {
           
             {map(lista,(objeto)=> (
              <tr key={objeto._id}>
-                <th>{objeto.fecha ? objeto.fecha : objeto.fechaCreacion}</th>
+                <th>{moment(objeto.fecha ? objeto.fecha : objeto.fechaCreacion).locale("es", localization).format("L")}</th>
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
                 <th>{objeto.fotos.length}</th>
@@ -67,8 +74,8 @@ export default function ConsultaAlbums(props) {
           
        </Table>
                  <div className="button-group">
-                    <Button  onClick={previousPage}>Prev</Button>
-                    <Button  onClick={nextPage}>Next</Button>
+                    <Button  onClick={previousPage}><img src={Back}/></Button>
+                    <Button  onClick={nextPage}><img src={Next}/></Button>
                 </div>
             <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
        </div>

@@ -1,6 +1,9 @@
 import React, {useState, useCallback} from 'react';
 import {Button, Form, FormGroup, FormControl} from "react-bootstrap";
 import {CreateAlbums,UpdateAlbums, DeleteAlbum} from "../../../api/albums";
+import Check from "../../../assets/svg/check-white-36dp.svg";
+import Close from "../../../assets/svg/close-white-36dp.svg";
+import Camara from "../../../assets/png/outline_add_a_photo_white_36dp.png";
 import {useDropzone} from "react-dropzone";
 import {toast} from "react-toastify";
 import "./ABMAlbums.scss";
@@ -69,15 +72,17 @@ export function AltaAlbums(props) {
  
    return (
       <Form className="alta-albums">
-         <div {...getRootFilesProps()}className="alta-albums__fotos">
+        <h3>Crear Nuevo Album</h3>
+         <div {...getRootFilesProps()} className="alta-albums__fotos">
+            <img src={Camara}/>
             <input {...getInputFilesProps()} />
           </div>
         <FormGroup className="alta-albums__titulo">
-            <FormControl type="text" name="titulo" placeholder="Título del album" value= {title} onChange={(e) => setTitle(e.target.value)}/>           
+           <FormControl type="text" name="titulo" placeholder="Título del album" value= {title} onChange={(e) => setTitle(e.target.value)}/>           
         </FormGroup>
         <FormGroup className="alta-albums__buttons">
-           <Button onClick={onCreate}>Guardar</Button>
-           <Button onClick={closeModal}>Cancelar</Button>
+           <Button onClick={onCreate}><img src={Check}/></Button>
+           <Button onClick={closeModal}><img src={Close}/></Button>
        </FormGroup>
       </Form>
     )
@@ -106,16 +111,18 @@ export function ModificaAlbums(props) {
 
 
     return (
-      <Form>
-          <FormGroup>
+      <Form className="edit-album">
+        <h2>Editar</h2>
+        <div className="edit-album__divider"></div>
+          <FormGroup className="edit-album__input">
             <FormControl type="text" name="titulo" defaultValue={titulo} onChange={e => setTitulo({[e.target.name]:e.target.value})}/>           
         </FormGroup>
         <FormGroup>
 
         </FormGroup>
-        <FormGroup>
-           <Button onClick={modificarAlbum}>Guardar</Button>
-           <Button onClick={()=> setShow(false)}>Cancelar</Button>
+        <FormGroup className="edit-album__buttons">
+           <Button onClick={modificarAlbum}><img src={Check}/></Button>
+           <Button onClick={()=> setShow(false)}><img src={Close}/></Button>
        </FormGroup>
       </Form>
     )
@@ -144,13 +151,14 @@ export function EliminaAlbums(props) {
     }
 
     return (
-      <Form>
-        <FormGroup>
-        <h2>¿Está seguro que desea eliminar el albúm?</h2>
+      <Form className="eliminar-album">
+        <FormGroup className="eliminar-album__titulo">
+        <h2>¿ Desea eliminar el Albúm ?</h2>
         </FormGroup>
-        <FormGroup>
-           <Button onClick={deleteAlbum}>Ok</Button>
-           <Button onClick={() => setShowDelete(false)}>Cancelar</Button>
+        <div className="eliminar-album__divider"></div>
+        <FormGroup className="eliminar-album__buttons">
+           <Button onClick={deleteAlbum}><img src={Check}/></Button>
+           <Button onClick={() => setShowDelete(false)}><img src={Close}/></Button>
        </FormGroup>
       </Form>
     )

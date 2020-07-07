@@ -7,12 +7,31 @@
     
     button{
 
-        width: 300px;
+        width: 250px;
         height: 40px;
         font-size: 25px;
+        font-weight: bold;
         padding: 0;
-        background-color: #4E3B66;
+        background-color: #150A24;
         border: none;
+        border-radius: 0;
+        &:focus {
+            background-color: #150A24 !important;
+            outline: none;
+            box-shadow: none !important;
+            border: none;
+           
+         }
+
+          &:hover{
+             background-color: transparent;
+             border-bottom: 1px solid #946ACE !important;
+         }
+
+         &:active{
+             background-color: transparent;
+             border-bottom: 1px solid white !important;
+         }
         
     }
 }
@@ -21,7 +40,7 @@
 
 .tabla{
      margin-top: 20px;
-
+     background-color: white !important;
  }
 
 
@@ -40,7 +59,21 @@
          height: 40px;
          border-radius: 50%;
          padding: 0;
-         background-color: #4E3B66;
+         background-color: #6F34C1;
          border: none;
+
+         &:focus {
+            background-color: #6F34C1;
+            outline: none;
+            box-shadow: none !important;
+         }
+
+         &:active, &:hover{
+             background-color: #9869D9 !important;
+              
+         }
+
+
+        
      }
  }

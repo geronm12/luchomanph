@@ -2,8 +2,29 @@
     display: flex;
     justify-content: space-between;
     button{
-        background-color: #4E3B66;
+        background-color: transparent;
         border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
+        &:hover,&:focus{
+             background-color: #f2f2f2;
+             box-shadow: none !important;
+        }
+
+        &:active{
+            background-color: #9869D9 !important;
+        }
+        
+
+       img{
+            &:hover{
+                background-color: #f2f2f2;
+            }
+        }
     }
+
 }

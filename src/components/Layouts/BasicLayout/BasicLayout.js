@@ -2,7 +2,7 @@ import React, { useState, useEffect, Children } from "react";
 import {Container, Col, Row} from "react-bootstrap";
 import "./BasicLayout.scss";
 import Sidebar from "../../Sidebar";
-
+import RightBar from "../../RightBar";
 
 
 export default function BasicLayout(props){
@@ -21,6 +21,7 @@ export default function BasicLayout(props){
             {children}
             </Col>
             <Col xs={1}>
+                <RightBar/>
             </Col>
           </Row>
         </Container>

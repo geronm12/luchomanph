@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {Table, Button} from "react-bootstrap";
 import {map} from "lodash";
+import moment from "moment";
+import localization from "moment/locale/es";
+
 import  FormModal from "../../Modals/FormModal";
 import {AltaPosts} from "../../ABM/ABMPosts/ABMPosts";
 import Buttons from "../../Buttons";
+import Next from "../../../assets/svg/navigate_next-white-24dp.svg";
+import Back from "../../../assets/svg/navigate_before-white-24dp.svg";
+
 import "../Consulta.scss"; 
 
 
@@ -57,7 +63,7 @@ export default function ConsultaPosts(props) {
           
             {map(lista,(objeto)=> (
              <tr key={objeto._id}>
-                <th>{objeto.fecha ? objeto.fecha : objeto.fechaCreacion}</th>
+                <th>{moment(objeto.fecha ? objeto.fecha : objeto.fechaCreacion).locale("es", localization).format("L")}</th>
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
                 <th>{objeto.fotos.length}</th>
@@ -68,8 +74,8 @@ export default function ConsultaPosts(props) {
           
        </Table>
                 <div className="button-group">
-                    <Button  onClick={previousPage}>Prev</Button>
-                    <Button  onClick={nextPage}>Next</Button>
+                    <Button  onClick={previousPage}><img src={Back}/></Button>
+                    <Button  onClick={nextPage}><img src={Next}/></Button>
                 </div>
        </div>)
 }

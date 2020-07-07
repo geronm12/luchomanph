@@ -14,6 +14,9 @@ export default function ABMAlbums(props) {
 
     useEffect(() => {
         GetAlbums(page).then(response => {
+            if(!response){
+                setPage(1);
+            }   
            setAlbums(response)
            setRefreshAlbums(false);
         }).catch(err => {

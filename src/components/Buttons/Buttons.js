@@ -5,6 +5,9 @@ import ReactTooltip  from "react-tooltip";
 import FormModal from '../Modals/FormModal';
 import { ModificaAlbums, EliminaAlbums} from '../ABM/ABMAlbums/ABMAlbums';
 import {ModificaPosts, EliminaPosts} from "../ABM/ABMPosts/ABMPosts";
+import Delete from "../../assets/png/outline_delete_black_36dp.png";
+import Edit  from "../../assets/png/outline_edit_black_36dp.png";
+import Foto from "../../assets/png/outline_collections_black_36dp.png";
 
 
 export default function Buttons(props) {
@@ -20,7 +23,7 @@ export default function Buttons(props) {
        <div className="actions">
        
         <Button data-tip="Modificar" onClick={() => setShow(true)}>
-         M
+         <img src={Edit}/>
         </Button>
         <FormModal show={show} setShow={setShow}>
          {setRefreshAlbums ? <ModificaAlbums album={entidad} setShow={setShow} setRefreshAlbums={setRefreshAlbums}/> : 
@@ -28,14 +31,14 @@ export default function Buttons(props) {
         </FormModal>
 
         <Button data-tip="Eliminar" onClick={() => setShowDelete(true)}>
-        E
+        <img src={Delete}/>
         </Button>
         <FormModal show={showDelete} setShow={setShowDelete}>
         {setRefreshAlbums ? <EliminaAlbums setShowDelete={setShowDelete} album={entidad} setRefreshAlbums={setRefreshAlbums}/>
         : <EliminaPosts setRefreshPosts={setRefreshPosts} setShow={setShowDelete} post={entidad}/>}
         </FormModal>
         <Button data-tip="Agregar foto">
-        F
+        <img src={Foto}/>
         </Button>
         <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
        </div>

@@ -8,11 +8,11 @@ export default function FormModal(props) {
     const {children, titulo, show, setShow} = props;
     
     return (
-        <Modal show={show} onHide={() => setShow(false)} backdrop='static'>
+        <Modal show={show} onHide={() => setShow(false)} backdrop='static' centered>
             <Modal.Title>
                 {titulo}
             </Modal.Title>
-            <Modal.Body>
+            <Modal.Body className="modal-form">
               {children}
             </Modal.Body>
         </Modal>

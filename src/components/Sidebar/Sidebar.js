@@ -9,6 +9,7 @@ import Blog from "../../assets/svg/description-white-36dp.svg";
 import Album from "../../assets/svg/collections-white-36dp.svg";
 import Home from "../../assets/svg/home-white-36dp.svg";
 import Poff from "../../assets/svg/power_settings_new-white-36dp.svg";
+import Lente from "../../assets/png/aperture_24123.png";
 
 
 export default function Sidebar(props) {
@@ -21,11 +22,11 @@ export default function Sidebar(props) {
         return (<Link to=""></Link>)
     }
 
-   
+    
     return (
         <div className="sidebar">
            <ListGroup as="ul">
-            <Image></Image>                 
+            <Link to="/" className="sidebar__icon"><Image src={Lente} ></Image></Link>    
             <Link to="/" className= {"sidebar__item " + (active === 1 ? "pressed" : "")}>
                 <Image src={Home}/>
                 <span>Home</span>
