@@ -65,25 +65,26 @@ export  function AltaPosts(props) {
 
     return (
         <Form className="crear-post">
+            <h2>Crear Post</h2>
             <div {...getRootFilesProps()} className="crear-post__files">
+            <img src={Camara}/>
             <input {...getInputFilesProps()} />
             </div>
-            <FormGroup>
+            <FormGroup className="crear-post__titulo">
                 <FormControl type="text" placeholder="Titulo" name="titulo"  defaultValue={form.titulo} onChange={setFormData}/>
-            </FormGroup>
-            <FormGroup>
                 <FormControl type="text" placeholder="Nombre de la carpeta de fotos" name="carpeta"  defaultValue={form.carpeta} onChange={setFormData}/>
             </FormGroup>
-            <FormGroup>
+          
+            <FormGroup className="crear-post__edit-buttons">
                 <Button>B</Button>
                 <Button>S</Button>
             </FormGroup>
-            <FormGroup>
+            <FormGroup className="crear-post__cuerpo">
                 <FormControl type="text" as="textarea" placeholder= "Cuerpo"  defaultValue={form.cuerpo} name="cuerpo" onChange={setFormData}/>
             </FormGroup>
-            <FormGroup>
-                <Button onClick={onCreate}>Guardar</Button>
-                <Button onClick={() => setShow(false)}>Cancelar</Button>
+            <FormGroup className="crear-post__buttons">
+                <Button onClick={onCreate}><img src={Check}/></Button>
+                <Button onClick={() => setShow(false)}><img src={Close}/></Button>
             </FormGroup>
         </Form>
     )
