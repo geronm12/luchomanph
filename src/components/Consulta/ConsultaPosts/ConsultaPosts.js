@@ -66,7 +66,7 @@ export default function ConsultaPosts(props) {
                 <th>{moment(objeto.fecha ? objeto.fecha : objeto.fechaCreacion).locale("es", localization).format("L")}</th>
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
-                <th>{objeto.fotos.length}</th>
+                <th>{objeto.fotos.length > 0 ? objeto.fotos.length : 0}</th>
                 <th><Buttons entidad={objeto} setRefreshPosts={setRefreshPosts}/></th>
              </tr>
             ))}
@@ -74,8 +74,8 @@ export default function ConsultaPosts(props) {
           
        </Table>
                 <div className="button-group">
-                    <Button  onClick={previousPage}><img src={Back}/></Button>
-                    <Button  onClick={nextPage}><img src={Next}/></Button>
+                    <Button  onClick={previousPage}><img src={Back} alt="back"/></Button>
+                    <Button  onClick={nextPage}><img src={Next} alt="next"/></Button>
                 </div>
        </div>)
 }

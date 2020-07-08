@@ -3,8 +3,11 @@ import {Button} from "react-bootstrap";
 import "./Buttons.scss";
 import ReactTooltip  from "react-tooltip";
 import FormModal from '../Modals/FormModal';
+import Photo from "../Photo";
 import { ModificaAlbums, EliminaAlbums} from '../ABM/ABMAlbums/ABMAlbums';
 import {ModificaPosts, EliminaPosts} from "../ABM/ABMPosts/ABMPosts";
+
+
 import Delete from "../../assets/png/outline_delete_black_36dp.png";
 import Edit  from "../../assets/png/outline_edit_black_36dp.png";
 import Foto from "../../assets/png/outline_collections_black_36dp.png";
@@ -18,6 +21,8 @@ export default function Buttons(props) {
     const [show, setShow] = useState(false);
     
     const [showDelete, setShowDelete] = useState(false);
+
+    const [showPhotos, setShowPhotos] = useState(false);
 
     return (
        <div className="actions">
@@ -37,9 +42,13 @@ export default function Buttons(props) {
         {setRefreshAlbums ? <EliminaAlbums setShowDelete={setShowDelete} album={entidad} setRefreshAlbums={setRefreshAlbums}/>
         : <EliminaPosts setRefreshPosts={setRefreshPosts} setShow={setShowDelete} post={entidad}/>}
         </FormModal>
-        <Button data-tip="Agregar foto">
+        <Button data-tip="Ver Fotos" onClick={() => setShowPhotos(true)}>
         <img src={Foto} alt="Fotos"/>
         </Button>
+        <FormModal show={showPhotos} setShow={setShowPhotos}>
+        {setRefreshAlbums ? <Photo setShow={setShowPhotos} entidad={entidad} setRefresh={setRefreshAlbums} coleccion="album"/>
+        : <Photo setRefresh={setRefreshPosts} setShow={setShowPhotos} entidad={entidad} coleccion="post"/>}
+        </FormModal>
         <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
        </div>
     )
