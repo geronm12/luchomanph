@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-
+ 
  .modal-dialog.modal-lg{
     display: flex;
     align-items: center;
@@ -7,8 +6,7 @@
     height: 80vh;
 
     .modal-content{
-        background: rgb(123,36,28);
-        background: linear-gradient(90deg, rgba(123,36,28,1) 35%, rgba(146,43,33,1) 50%, rgba(146,43,33,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%);
+        background: transparent;
         align-items: center;
         justify-content: center;
         width: 500px !important;
@@ -22,7 +20,8 @@
             font-size: 50px;
             margin-top: 50px;
             color: white;
-            font-family: 'Notable', sans-serif;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
         }
  
         .modal-body{
@@ -37,12 +36,14 @@
                 width: 300px;
                 outline: none !important;
                 border: none !important;
-                background: rgb(123,36,28);
-                background: linear-gradient(90deg, rgba(123,36,28,1) 35%, rgba(146,43,33,1) 50%, rgba(146,43,33,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%);
+                background: transparent;
                 color: white;
                 font-size: 20px;
                 font-weight: bold;
-                border-bottom: 1px solid #7F1515 !important;
+                border-bottom: 1px solid white !important;
+                border-radius: 0;
+
+             
                 
                 &:focus, &:active{
                      border: 0;
@@ -63,7 +64,7 @@
                 align-items: center;
             
                 button{
-                    width: 400px;
+                    width: 300px;
                     background-color: transparent;
                     font-weight: bold;
                     font-size: 25px;
@@ -75,12 +76,11 @@
                     }
 
                     &:active, &:visited{
-                        background-color:#C0392B !important;
-                        box-shadow: #C0392B;
+                        background-color:#9869D9 !important;
                     }
                     
                     &:hover{
-                        background-color: #922B21;
+                        background-color: #6F34C1;
                         color: white;
                     }
 

@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {Form, FormGroup, FormControl, Button} from "react-bootstrap";
+import {Form, FormGroup, FormControl, Button, Spinner} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
 import {toast} from "react-toastify";
 import {CreatePosts, DeletePost, UpdatePost} from "../../../api/posts";
@@ -42,8 +42,7 @@ export  function AltaPosts(props) {
 
 
     function onCreate(){
-        console.log(files);
-        console.log(form);
+        setLoading(true);
         CreatePosts(files, form).then(response => {
             setLoading(false);
             toast.success("Post creado con éxito");
@@ -66,15 +65,15 @@ export  function AltaPosts(props) {
     return (
         <Form className="crear-post">
             <h2>Crear Post</h2>
+           
             <div {...getRootFilesProps()} className="crear-post__files">
-            <img src={Camara}/>
+            <img src={Camara} alt="Camara"/>
             <input {...getInputFilesProps()} />
             </div>
             <FormGroup className="crear-post__titulo">
                 <FormControl type="text" placeholder="Titulo" name="titulo"  defaultValue={form.titulo} onChange={setFormData}/>
                 <FormControl type="text" placeholder="Nombre de la carpeta de fotos" name="carpeta"  defaultValue={form.carpeta} onChange={setFormData}/>
             </FormGroup>
-          
             <FormGroup className="crear-post__edit-buttons">
                 <Button>B</Button>
                 <Button>S</Button>
@@ -82,10 +81,12 @@ export  function AltaPosts(props) {
             <FormGroup className="crear-post__cuerpo">
                 <FormControl type="text" as="textarea" placeholder= "Cuerpo"  defaultValue={form.cuerpo} name="cuerpo" onChange={setFormData}/>
             </FormGroup>
-            <FormGroup className="crear-post__buttons">
-                <Button onClick={onCreate}><img src={Check}/></Button>
-                <Button onClick={() => setShow(false)}><img src={Close}/></Button>
-            </FormGroup>
+            {loading ? (<Spinner animation="border" variant="light" className="crear-post__spinner"/>) :
+             <FormGroup className="crear-post__buttons">
+             <Button onClick={onCreate}><img src={Check}  alt="Check"/></Button>
+             <Button onClick={() => setShow(false)}><img src={Close} alt="Close"/></Button>
+         </FormGroup>}
+           
         </Form>
     )
 }
@@ -99,6 +100,7 @@ export function ModificaPosts(props){
     const [loading, setLoading] = useState(false);
 
     const updatePost = () => {
+        setLoading(true);
         UpdatePost(post._id,data).then(response =>{
             toast.success("Post modificado con éxito");
             setLoading(false);
@@ -120,17 +122,20 @@ export function ModificaPosts(props){
 
     return (
     <Form className="modificar-post">
-        <h2>Editar</h2> 
-        <FormGroup className="modificar-post__titulo">
+        <h2>Editar</h2>
+         <FormGroup className="modificar-post__titulo">
             <FormControl type="text" placeholder="titulo" defaultValue={post.titulo} onChange={setChange} name="titulo"/>
         </FormGroup>
         <FormGroup className="modificar-post__cuerpo">
             <FormControl type="text" as="textarea" placeholder="Cuerpo" defaultValue={post.cuerpo} onChange={setChange} name="cuerpo"/>
         </FormGroup>
-        <FormGroup className="modificar-post__buttons">
-            <Button onClick={updatePost}><img src={Check}/></Button>
-            <Button onClick={() => setShow(false)}><img src={Close}/></Button>
-        </FormGroup>
+
+        {loading ? (<Spinner animation="border" variant="light" className="modificar-post__spinner"/>) : 
+         <FormGroup className="modificar-post__buttons">
+         <Button onClick={updatePost}><img src={Check} alt="Check"/></Button>
+         <Button onClick={() => setShow(false)}><img src={Close} alt="Close"/></Button>
+         </FormGroup>}
+       
     </Form>);
 
 
@@ -142,6 +147,7 @@ export function EliminaPosts(props){
     const [loading, setLoading] = useState(false);
 
     const eliminarPost = () => {
+        setLoading(true);
         DeletePost(post._id).then(response => {
             toast.success("Post eliminado con éxito");
             setRefreshPosts(true);
@@ -163,10 +169,12 @@ export function EliminaPosts(props){
         <Form className="eliminar-post">
             <h2>¿ Desea eliminar el Post ?</h2>
             <div className="eliminar-post__divider"></div>
+            {loading ? (<Spinner animation="border" variant="light" className="eliminar-post__spinner"/>) : 
             <FormGroup className="eliminar-post__buttons">
-                <Button onClick={eliminarPost}><img src={Check}/></Button>
-                <Button onClick={() => setShow(false)}><img src={Close}/></Button>
-            </FormGroup>
+            <Button onClick={eliminarPost}><img src={Check} alt="Check"/></Button>
+            <Button onClick={() => setShow(false)}><img src={Close} alt="Close"/></Button>
+           </FormGroup>}
+            
         </Form>
     )
 

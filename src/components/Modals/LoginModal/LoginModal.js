@@ -56,7 +56,7 @@ export default function LoginModal (props){
 
     return(
     
-        <Modal show={show}   onHide={() => setShow(false)}  size="lg" backdrop='static'>
+        <Modal show={show}   onHide={() => setShow(false)}  size="lg" backdrop='static' keyboard={false}>
         <Modal.Title>
             <h3>Login</h3>
         </Modal.Title>

@@ -23,7 +23,7 @@ export default function Buttons(props) {
        <div className="actions">
        
         <Button data-tip="Modificar" onClick={() => setShow(true)}>
-         <img src={Edit}/>
+         <img src={Edit} alt="Edit"/>
         </Button>
         <FormModal show={show} setShow={setShow}>
          {setRefreshAlbums ? <ModificaAlbums album={entidad} setShow={setShow} setRefreshAlbums={setRefreshAlbums}/> : 
@@ -31,14 +31,14 @@ export default function Buttons(props) {
         </FormModal>
 
         <Button data-tip="Eliminar" onClick={() => setShowDelete(true)}>
-        <img src={Delete}/>
+        <img src={Delete} alt="Delete"/>
         </Button>
         <FormModal show={showDelete} setShow={setShowDelete}>
         {setRefreshAlbums ? <EliminaAlbums setShowDelete={setShowDelete} album={entidad} setRefreshAlbums={setRefreshAlbums}/>
         : <EliminaPosts setRefreshPosts={setRefreshPosts} setShow={setShowDelete} post={entidad}/>}
         </FormModal>
         <Button data-tip="Agregar foto">
-        <img src={Foto}/>
+        <img src={Foto} alt="Fotos"/>
         </Button>
         <ReactTooltip type="info" delayShow={1000} backgroundColor="#4E3B66"/>
        </div>

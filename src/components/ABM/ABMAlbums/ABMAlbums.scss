@@ -83,6 +83,7 @@
         }
     }
 
+    
 }
 
 .edit-album{
@@ -171,6 +172,11 @@
         }
 
     }
+
+    &__spinner{
+
+        margin-bottom: 15px;
+    }
 }
 
 .eliminar-album{
@@ -238,5 +244,9 @@
                  
 
          }
+    }
+
+    &__spinner{
+        margin-bottom: 15px;
     }
 }
