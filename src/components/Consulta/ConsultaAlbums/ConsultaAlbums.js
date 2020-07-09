@@ -44,7 +44,7 @@ export default function ConsultaAlbums(props) {
             <CrearButton show={show} showModal={showModal} setShow={setShow} setRefreshAlbums={setRefreshAlbums}/>
         )
     }
-   
+    
   
     return (
         <div>

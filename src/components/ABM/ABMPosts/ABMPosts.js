@@ -62,6 +62,13 @@ export  function AltaPosts(props) {
         });
     }
 
+
+    const Negrita = () => {
+
+        var text = document.getElementById("body");
+        document.execCommand("bold", false, null);
+    }
+
     return (
         <Form className="crear-post">
             <h2>Crear Post</h2>
@@ -75,11 +82,11 @@ export  function AltaPosts(props) {
                 <FormControl type="text" placeholder="Nombre de la carpeta de fotos" name="carpeta"  defaultValue={form.carpeta} onChange={setFormData}/>
             </FormGroup>
             <FormGroup className="crear-post__edit-buttons">
-                <Button>B</Button>
+                <Button onClick={Negrita}>B</Button>
                 <Button>S</Button>
             </FormGroup>
             <FormGroup className="crear-post__cuerpo">
-                <FormControl type="text" as="textarea" placeholder= "Cuerpo"  defaultValue={form.cuerpo} name="cuerpo" onChange={setFormData}/>
+                <FormControl type="text" as="textarea" placeholder= "Cuerpo"  defaultValue={form.cuerpo} name="cuerpo" onChange={setFormData} id="body"/>
             </FormGroup>
             {loading ? (<Spinner animation="border" variant="light" className="crear-post__spinner"/>) :
              <FormGroup className="crear-post__buttons">

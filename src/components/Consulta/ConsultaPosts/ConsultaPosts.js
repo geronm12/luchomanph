@@ -66,7 +66,7 @@ export default function ConsultaPosts(props) {
                 <th>{moment(objeto.fecha ? objeto.fecha : objeto.fechaCreacion).locale("es", localization).format("L")}</th>
                 <th>{objeto.carpeta}</th>
                 <th>{objeto.titulo}</th>
-                <th>{objeto.fotos.length > 0 ? objeto.fotos.length : 0}</th>
+                <th>{objeto.fotos ? objeto.fotos.length : 0}</th>
                 <th><Buttons entidad={objeto} setRefreshPosts={setRefreshPosts}/></th>
              </tr>
             ))}

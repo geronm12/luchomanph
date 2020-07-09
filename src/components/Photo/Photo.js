@@ -74,6 +74,30 @@ export default function Photo(props) {
     }
 
 
+    const AddPicture = () => {
+        if(file != null){
+          setLoading(true);
+          AddPhoto(entidad._id, coleccion, file).then(response => {
+            setLoading(false);
+            toast.success("Foto agregada con éxito");
+            setRefresh(true);
+            setShow(false);
+          }).catch(() => {
+            toast.error("Ocurrió un error al guardar la foto");
+            setRefresh(true);
+            setShow(false);
+          }).finally(() => {
+            setLoading(false);
+            setRefresh(true);
+            setShow(false);
+          });
+        }else{
+          toast.warning("El archivo es obligatorio");
+        }
+          
+    }
+
+
     const showQuestion = (index) =>  {
         setIndice(index);
         setQuestionModal(true);
@@ -85,18 +109,15 @@ export default function Photo(props) {
           setFile(file); 
       });
         
+
+
+
     
       const {getRootProps, getInputProps} = useDropzone({ 
       accept: "image/jpeg, image/png",
       noKeyboard:true,
       multiple:true,
       onDrop: onDrop});
-
-
-
-    if(!fotos){
-      return <h2> No hay fotos brother</h2>;
-    }
 
 
 
@@ -107,7 +128,7 @@ export default function Photo(props) {
            <h6>Insertar Archivo</h6>
           <input {...getInputProps()}/>
          </div>
-         <Button>{fotos ? <img src={Add} alt="add" style={{width: "60%"}}/> : <Spinner animation="border" variant="light"/> }</Button> 
+         <Button onClick={AddPicture}>{!loading ? <img src={Add} alt="add" style={{width: "60%"}}/> : <Spinner animation="grow" variant="light"/> }</Button> 
          </div>
          <Carousel indicators={false} className="photo__carrousel">
             {map(fotos,(foto, index) => ( 
