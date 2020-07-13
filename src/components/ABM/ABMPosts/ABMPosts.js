@@ -65,8 +65,12 @@ export  function AltaPosts(props) {
 
     const Negrita = () => {
 
-        var text = document.getElementById("body");
-        document.execCommand("bold", false, null);
+        var txtarea  = document.getElementById("body");
+        const inicio = txtarea.selectionStart;
+        const finish = txtarea.selectionEnd;
+        const sel = txtarea.value.substring(inicio, finish);
+        const left = txtarea.value.substring(finish + 1, txtarea.length)
+        txtarea.value = sel.bold() +" "+ left;
     }
 
     return (
