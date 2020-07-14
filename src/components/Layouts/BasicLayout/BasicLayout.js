@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Children } from "react";
 import {Container, Col, Row} from "react-bootstrap";
-import "./BasicLayout.scss";
 import Sidebar from "../../Sidebar";
 import RightBar from "../../RightBar";
+
+import "./BasicLayout.scss";
 
 
 export default function BasicLayout(props){
@@ -14,16 +15,16 @@ export default function BasicLayout(props){
        
         <Container fluid>
             <Row >
-            <Col xs={2}>
-            <Sidebar  setRefreshLogin={setRefreshLogin} active={active}/>        
+            <Col xs={12} className="content">
+            <Sidebar  setRefreshLogin={setRefreshLogin} active={active} className="nav"/>        
             </Col>
-            <Col xs={9}>
+            </Row>
+            <Row>
+            <Col xs={12} className="content">
             {children}
             </Col>
-            <Col xs={1}>
-                <RightBar/>
-            </Col>
-          </Row>
+            </Row>
+          
         </Container>
      
     )

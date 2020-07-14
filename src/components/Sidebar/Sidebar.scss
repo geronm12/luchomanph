@@ -1,52 +1,48 @@
 .sidebar{
-    background-color: #150A24;
-    min-height: 100vh;
-    border-right: 1px solid #8868B3;
+    background-color:#2E2042;
+    width: 100%;
     padding: 0;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 70px;
     font-size: 25px;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    border-bottom: 1px solid white;
+    position: fixed !important;
+    z-index: 100;
+    .list-group{
+        display: flex;
+        flex-direction: row !important;
+    }
    
-    &__icon{
-        
-        cursor: pointer;
-        align-self: center;
-        
-        img{
-            height: 80px;
-        width: 80px;
-        align-self: center;
-        margin-bottom: 30px;
-        }
-    } 
-
 
     &__item{
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 30px;
         color: white;
         text-decoration: none;
         border: none;
         padding: 0;
         animation-name: shrink;
         animation-duration: 0.5s;
-        
+        margin-right: 50px;
+        width: 120px;
+        height: 65px;
+        border-radius: 10px;
         &:hover{
-            text-decoration: none;
-            color: #6F34C1;
+             background-color: grey;
+             opacity: 0.1;
         }
 
-        
-         
+    
         &.list-group-item.list-group-item-action{
-            background-color: #150A24;
-            
-            &:active, &:focus{
+            background-color: #2E2042;
+            width: 120px;
+            height: 65px;
+            border-radius: 10px;
+            margin-right: 30px;
+             &:active, &:focus{
                 border:none;
                 outline: none;
             }
@@ -59,11 +55,13 @@
     }
    
    .pressed{
-        font-size: 55px;
-        color: #6F34C1 ;
-        font-weight: bold;
-        animation: grow 0.5s forwards;
-        animation-iteration-count: 1;
+        border-bottom: 5px solid #6F34C1;
+        border-radius: 0;
+        
+        &:hover{
+            background-color:#2E2042 !important;
+            opacity: 1;
+        }
     }
 }
 

@@ -2,10 +2,12 @@
 .container{
  
 background-color: #EBE7E4;
+display: flex;
 
  
 }
+ 
 
-.footer{
-    background-color: red;
+.content{
+    padding: 0 !important;
 }

@@ -69,8 +69,22 @@ export  function AltaPosts(props) {
         const inicio = txtarea.selectionStart;
         const finish = txtarea.selectionEnd;
         const sel = txtarea.value.substring(inicio, finish);
-        const left = txtarea.value.substring(finish + 1, txtarea.length)
-        txtarea.value = sel.bold() +" "+ left;
+        const left = txtarea.value.substring(finish + 1, txtarea.length);
+        const right = txtarea.value.substring(0, inicio);
+        txtarea.value = right + sel.bold() + left;
+    }
+
+    const Parrafo = () => {
+        var txtarea = document.getElementById("body");
+        const inicio = txtarea.selectionStart;
+        const finish = txtarea.selectionEnd;
+
+        const sel = txtarea.value.substring(inicio, finish);
+        const left = txtarea.value.substring(finish + 1, txtarea.length);
+        const right = txtarea.value.substring(0, inicio);
+         
+        txtarea.value = right + "<p>" + sel + "</p>" + left;
+        
     }
 
     return (
@@ -87,7 +101,8 @@ export  function AltaPosts(props) {
             </FormGroup>
             <FormGroup className="crear-post__edit-buttons">
                 <Button onClick={Negrita}>B</Button>
-                <Button>S</Button>
+                <Button onClick={Parrafo}>P</Button>
+                
             </FormGroup>
             <FormGroup className="crear-post__cuerpo">
                 <FormControl type="text" as="textarea" placeholder= "Cuerpo"  defaultValue={form.cuerpo} name="cuerpo" onChange={setFormData} id="body"/>

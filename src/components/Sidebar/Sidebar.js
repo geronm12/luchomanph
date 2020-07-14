@@ -26,22 +26,22 @@ export default function Sidebar(props) {
     return (
         <div className="sidebar">
            <ListGroup as="ul">
-            <Link to="/" className="sidebar__icon"><Image src={Lente} ></Image></Link>    
+           
             <Link to="/" className= {"sidebar__item " + (active === 1 ? "pressed" : "")}>
                 <Image src={Home}/>
-                <span>Home</span>
+                
             </Link>        
             <Link to="/albums" className={"sidebar__item " + (active === 3 ? "pressed" : "")} >
                 <Image src={Album}/>
-                <span>Albums</span>
+               
             </Link>
             <Link to="/posts" className={"sidebar__item " + (active === 2 ? "pressed" : "")}>
                 <Image src={Blog}/> 
-                <span>Posts</span>
+             
             </Link>  
              <ListGroup.Item action  className="sidebar__item" >
-             <Image src={Poff}/>
-             <span onClick={Logout}>Salir</span>
+             <Image src={Poff} onClick={Logout}/>
+           
             </ListGroup.Item>
             </ListGroup>
         </div>
