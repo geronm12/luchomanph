@@ -3,19 +3,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80% !important;
+    height: 85% !important;
     overflow: hidden;
-    margin-top: 40px;
-    margin-left: 100px;
-   
-   
-
+    margin-top: 100px;
+    min-height: 85vh;
+    .calendario{
+        background-color: white !important;
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+    }
+    
  
-    
-    
 }
 
 
+.buttons{
+    display: flex;
+    align-self: flex-start;      
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 80px;
+    button{
+        margin-right: 10px;
+    }
+}
 
 
  
