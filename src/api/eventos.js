@@ -19,3 +19,48 @@ export function GetEventos(month){
 
 
 }
+
+export function CreateEvento(evento){
+
+    const url = `${PATH}/crearEvento`;
+
+    const params = {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${getTokenApi()}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(evento)
+    }
+
+    return fetch(url, params).then(response => response).catch(err => err);
+
+}
+
+export function DeleteEvento(id){
+    
+    const url = `${PATH}/eliminarEvento?id=${id}`;
+    const params = {
+        headers:{
+        method: 'DELETE',
+        Authorization: `Bearer ${getTokenApi()}`
+         }
+    };
+
+
+    return fetch(url, params).then(response => response).catch(err => err);
+}
+
+export function UpdateEvento(id,evento){
+
+    const url = `${PATH}/modificarEvento?id=${id}`;
+    const params = {
+        headers:{
+        method: 'PUT',
+        Authorization: `Bearer ${getTokenApi()}`
+         },
+        body: JSON.stringify(evento)
+    };
+
+    return fetch(url, params).then(response => response).catch(err => err);
+}

@@ -1,5 +1,5 @@
 .sidebar{
-    background-color:#2E2042;
+    background-color:#3c3657;
     width: 100%;
     padding: 0;
     height: 70px;
@@ -7,7 +7,6 @@
     display: flex;
     align-items: center !important;
     justify-content: center !important;
-    border-bottom: 1px solid white;
     position: fixed !important;
     z-index: 100;
     .list-group{
@@ -37,7 +36,7 @@
 
     
         &.list-group-item.list-group-item-action{
-            background-color: #2E2042;
+            background-color: #3c3657;
             width: 120px;
             height: 65px;
             border-radius: 10px;
@@ -55,11 +54,11 @@
     }
    
    .pressed{
-        border-bottom: 5px solid #6F34C1;
+        border-bottom: 5px solid #cd6039;
         border-radius: 0;
         
         &:hover{
-            background-color:#2E2042 !important;
+            background-color:#3c3657!important;
             opacity: 1;
         }
     }

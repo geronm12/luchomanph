@@ -58,15 +58,15 @@ export default function LoginModal (props){
     
         <Modal show={show}   onHide={() => setShow(false)}  size="lg" backdrop='static' keyboard={false}>
         <Modal.Title>
-            <h3>Login</h3>
+            <h3>LOGIN</h3>
         </Modal.Title>
         <Modal.Body>
            <Form.Group>
-            <Form.Control type="email" name="email" placeholder="Correo Electrónico" defaultValue={formData.email} onChange={onChange}>
+            <Form.Control type="email" name="email" placeholder="Email" defaultValue={formData.email} onChange={onChange}>
            </Form.Control>
            </Form.Group>
            <Form.Group>
-            <Form.Control type="password" name="password" placeholder="Contraseña" defaultValue={formData.password} onChange={onChange}>
+            <Form.Control type="password" name="password" placeholder="Password" defaultValue={formData.password} onChange={onChange}>
            </Form.Control>
         </Form.Group>
            <Form.Group className="button-div">

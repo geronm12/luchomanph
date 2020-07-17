@@ -6,7 +6,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {Button} from 'react-bootstrap';
 import {map} from "lodash";
 
-import {GetEventos} from "../../api/eventos";
+import EventModal from "../../components/Modals/EventModal";
+
+import {GetEventos,CreateEvento} from "../../api/eventos";
 
 import "./Home.scss";
 
@@ -18,17 +20,17 @@ export default class Home extends React.Component{
 
     constructor(props){
         super(props);
-       
+         
         this.state = {
             setRefreshLogin: this.props.setRefreshLogin,
             active: this.props.active,
             eventos: [], 
-            month: getMonth()
+            month: getMonth(),
+            show : false,
+            refresh: false,
+         
         }
-
-        
-        
-    }
+  }
 
      ObtenerEventos(){
         GetEventos(this.state.month).then(res => {
@@ -36,6 +38,7 @@ export default class Home extends React.Component{
            this.setState({eventos: data})
        })
    }
+
  
     componentWillMount(){
         this.ObtenerEventos();
@@ -70,21 +73,45 @@ export default class Home extends React.Component{
         
     }
 
+    HandleOpen = () => this.setState({show: true});
     
+    HandleClose = () => this.setState({show: false});
+
+    HandleRefresh = () => this.setState({refresh: !this.state.refresh})
+
+
+    componentDidUpdate(prevProps, prevState){
+        if(this.state.refresh !== prevState.refresh){
+            this.ObtenerEventos();
+        }
+    }
+        
+    
+    HandleDateclick(date){
+        this.setState({date: date});
+        this.setState({show: true})
+    }
+
     render(){
         return (
             <BasicLayout setRefreshLogin={this.state.setRefreshLogin} active={this.state.active}>
-                <div className="home">
+                 <div className="home">
+                <div className="header">
+                    <h3>Calendario</h3>
+               </div>
                     <div className="calendario">
                     <FullCalendar
-                        plugins={[ dayGridPlugin,interactionPlugin ]}
+                        plugins={[ dayGridPlugin,interactionPlugin]}
                         height={"90vh"}
                         editable={false}
                         events={this.state.eventos}
                         locales = "esLocale"
                         locale = "es"
                         eventClick={(event) => alert(event.event.title + " termina " + event.event.end)}
+                        selectable={true}
+                        dateClick={(e) => this.HandleDateclick(e.date)}
                        />
+                       <EventModal  show={this.state.show} setShow={this.HandleClose} setRefresh={this.HandleRefresh} date={this.state.date}/>
                     </div>
                </div>
             </BasicLayout>

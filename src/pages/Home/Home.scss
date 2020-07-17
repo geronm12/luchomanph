@@ -4,33 +4,49 @@
     justify-content: center;
     align-items: center;
     height: 85% !important;
-    overflow: hidden;
-    margin-top: 100px;
-    min-height: 85vh;
+    min-height: 100vh;
+    margin-top: 90px;
     .calendario{
         background-color: white !important;
-        width: 85%;
+        width: 90%;
         display: flex;
+        margin-top: 0px;
         flex-direction: column;
     }
     
  
 }
 
-
-.buttons{
+.header{
+    width: 90%;
     display: flex;
-    align-self: flex-start;      
     align-items: center;
-    width: 100%;
     justify-content: center;
-    margin-top: 80px;
-    button{
-        margin-right: 10px;
+    flex-direction: column;
+    margin-bottom: 0 !important;
+    border-radius: 10px;
+    .buttons{
+
+        width: 100%;
+        background-color: transparent;
+        border: none;
+         &:focus{
+          background-color: transparent;
+          box-shadow: none;
+         }
+         
+         &:hover, &:active{
+            background-color: #744E7C !important;
+            box-shadow: none !important;
+         }
     }
+
+    h3{
+        color:white;
+        font-weight: bold;
+    }
+
 }
-
-
  
 
 
