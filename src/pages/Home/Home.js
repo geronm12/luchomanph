@@ -8,7 +8,9 @@ import {map} from "lodash";
 
 import EventModal from "../../components/Modals/EventModal";
 
-import {GetEventos,CreateEvento} from "../../api/eventos";
+import {GetEventos} from "../../api/eventos";
+
+import ModifiEvent from "../../components/Modals/EditEventModal";
 
 import "./Home.scss";
 
@@ -28,8 +30,9 @@ export default class Home extends React.Component{
             month: getMonth(),
             show : false,
             refresh: false,
-         
-        }
+            showModify: false,
+            evento: null
+       }
   }
 
      ObtenerEventos(){
@@ -79,6 +82,15 @@ export default class Home extends React.Component{
 
     HandleRefresh = () => this.setState({refresh: !this.state.refresh})
 
+    HandleModifyOpen = () => this.setState({showModify: true});
+
+    HandleModifyClose = () => this.setState({showModify: false});
+    
+    setEvento = (evento) => {
+        this.setState({evento: evento.event})
+        this.setState({showModify: true})
+    }
+
 
     componentDidUpdate(prevProps, prevState){
         if(this.state.refresh !== prevState.refresh){
@@ -107,11 +119,12 @@ export default class Home extends React.Component{
                         events={this.state.eventos}
                         locales = "esLocale"
                         locale = "es"
-                        eventClick={(event) => alert(event.event.title + " termina " + event.event.end)}
+                        eventClick={(event) => this.setEvento(event)}
                         selectable={true}
                         dateClick={(e) => this.HandleDateclick(e.date)}
                        />
                        <EventModal  show={this.state.show} setShow={this.HandleClose} setRefresh={this.HandleRefresh} date={this.state.date}/>
+                       <ModifiEvent  show={this.state.showModify} evento = {this.state.evento} setShow={this.HandleModifyClose} setRefresh={this.HandleRefresh}/>
                     </div>
                </div>
             </BasicLayout>

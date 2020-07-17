@@ -1,52 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Modal, Button, FormControl, FormGroup, Form, Spinner} from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import es from "date-fns/locale/es";
 import ReactTooltip  from "react-tooltip";
-import {CreateEvento} from "../../../api/eventos";
+import {DeleteEvento,UpdateEvento} from "../../../api/eventos";
 import {toast} from "react-toastify";
 import {isNull, isEmpty} from 'lodash';
 
 import Check from "../../../assets/svg/check-white-36dp.svg";
 import Close from "../../../assets/svg/close-white-36dp.svg";
+import "./EditEventModal.scss";
 
-import "./EventModal.scss";
+export default function EditEventModal(props) {
 
-export default function EventModal(props){
+    const {setRefresh, evento, setShow, show} = props;
+     
+    const [formData, setFormData] = useState(GetEventData(evento));
 
-    const {show, setShow, setRefresh,date} = props;
- 
-    const [formData, setFormData] = useState(getInitialData(date));
+    const [id, setId] = useState(evento?.id);
   
-
-    const CrearEvento = () => {
-
-        const today = new Date(Date.now());
-
-        if(formData.fechaInicio < today || formData.fechaFin < today){
-            toast.error(`Las fechas no pueden ser menores a ${today}`)
-            return;
-        }
-
-        if(isEmpty(formData.titulo)){
-            toast.error("El titulo es obligatorio");
-            return;
-        }
-
-        CreateEvento(formData).then(response => {
-            setRefresh();
-            setFormData(getInitialData());
-            setShow();
-        })
-    }
+    useEffect(() => {
+       setFormData(GetEventData(evento));
+       setId(evento?.id)
+    }, [evento])
 
     const onChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value})
+        setFormData({...formData, [e.target.name]: e.target.value});
     }
 
-    const  HandleClose = ()=> {
-        setFormData(getInitialData());
-        setShow();
+    const onModify = () => {
+        UpdateEvento(id, formData).then(res => {
+            console.log(res);
+            toast.success("Modificado con éxito");
+            setRefresh();
+            setShow();
+        }).catch(err => {
+            toast.error("Ocurrió un error al intentar actualizar el evento");
+            setShow();
+        })
     }
 
     return (
@@ -54,27 +45,26 @@ export default function EventModal(props){
         <Modal  show={show} onHide={setShow} className="event-modal">
             <Modal.Title className="event-modal__title">
                 Eventos
-                 
             </Modal.Title>
             <Modal.Body className="event-modal__body"> 
                 <FormGroup> <FormControl 
                 type="text" 
                 placeholder="Titulo del evento" 
                 name="titulo" 
-               
+                defaultValue={formData.titulo}
                 onChange={onChange}/> </FormGroup>
                 <FormGroup className="event-modal__body__dates"> 
                 <DatePicker  
                 placeholder="fecha inicio"
                 locale={es}
-                selected={date} 
+                selected={formData.fechaInicio} 
                 showTimeSelect
                 onChange = {date => setFormData({...formData, fechaInicio: date})}
                  /> 
                  <DatePicker  
                  placeholder="fecha fin" 
                  locale={es}
-                 selected={date}
+                 selected={formData.fechaFin}
                  showTimeSelect
                  onChange = {date => setFormData({...formData, fechaFin: date})}
                  /> 
@@ -91,11 +81,11 @@ export default function EventModal(props){
                 </FormGroup>
             <FormGroup className="event-modal__body__buttons">
                 
-            <Button onClick={CrearEvento}>
+            <Button onClick={onModify}>
                 <img src={Check} alt="ok"/>
             </Button>
             
-            <Button onClick={HandleClose}>
+            <Button onClick={setShow}>
                 <img src={Close} alto="close"/>
             </Button>
             </FormGroup>
@@ -105,14 +95,13 @@ export default function EventModal(props){
 }
 
 
-function getInitialData(date){
-
-    const today = new Date(Date.now());
+ function GetEventData(evento){
 
     return {
-        fechaInicio: today,
-        fechaFin: today,
-        titulo: "",
-        allDay: false
+        fechaInicio: evento?.start || new Date(Date.now()),
+        fechaFin: evento?.end || new Date(Date.now()),
+        titulo: evento?.title || "",
+        allDay: evento?.allDay || false
     }
-}
+
+ }

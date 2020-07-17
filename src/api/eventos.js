@@ -55,8 +55,8 @@ export function UpdateEvento(id,evento){
 
     const url = `${PATH}/modificarEvento?id=${id}`;
     const params = {
-        headers:{
         method: 'PUT',
+        headers:{
         Authorization: `Bearer ${getTokenApi()}`
          },
         body: JSON.stringify(evento)
