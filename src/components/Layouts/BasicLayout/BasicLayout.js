@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Children } from "react";
 import {Container, Col, Row} from "react-bootstrap";
 import Sidebar from "../../Sidebar";
-import RightBar from "../../RightBar";
 
 import "./BasicLayout.scss";
 

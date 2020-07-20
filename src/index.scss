@@ -9,8 +9,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0 !important;
   min-height: 100vh;
-  background-image: url("./assets/jepg/sunset.jpg");
-  background-repeat: no-repeat;
+  background: rgb(97,64,81);
+background: linear-gradient(187deg, rgba(97,64,81,1) 35%, rgba(178,93,74,1) 61%, rgba(114,49,71,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%);
 }
 
 code {

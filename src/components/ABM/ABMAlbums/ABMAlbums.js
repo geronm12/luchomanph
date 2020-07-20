@@ -41,12 +41,11 @@ export function AltaAlbums(props) {
 
     const onCreate = async ()=> {
        
-        setLoading(true);
-
+        
         if(title && title !== ""){
         
         if(files){
-          
+          setLoading(true);
           await CreateAlbums(files, title).then(response =>{
               setLoading(false);
               toast.success("Album creado con éxito");
@@ -64,7 +63,12 @@ export function AltaAlbums(props) {
             setShow(false);
           }
             )
+        }else{
+          toast.warning("Debe seleccionar al menos una foto");
         }
+          
+      }else{
+        toast.warning("El titulo es obligatorio")
       }
 
    }

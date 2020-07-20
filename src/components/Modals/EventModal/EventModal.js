@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Modal, Button, FormControl, FormGroup, Form, Spinner} from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import es from "date-fns/locale/es";
@@ -17,12 +17,20 @@ export default function EventModal(props){
     const {show, setShow, setRefresh,date} = props;
  
     const [formData, setFormData] = useState(getInitialData(date));
-  
+    
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+    
+    setFormData(getInitialData(date));
+
+    }, [date])
+
 
     const CrearEvento = () => {
 
         const today = new Date(Date.now());
-
+       
         if(formData.fechaInicio < today || formData.fechaFin < today){
             toast.error(`Las fechas no pueden ser menores a ${today}`)
             return;
@@ -32,10 +40,23 @@ export default function EventModal(props){
             toast.error("El titulo es obligatorio");
             return;
         }
-
+        
+        setLoading(true);
         CreateEvento(formData).then(response => {
+            if(response){
+                console.log(response);
+                toast.success("Evento credo con éxito");
+                setLoading(false);
+                setRefresh();
+                setShow();
+            }
+           
+        }).catch(err => {
+            setLoading(false);
+            toast.error("Ocurrió un error al crear el evento, por favor intente de nuevo más tarde.");
+        }).finally(() => {
+            setLoading(false);
             setRefresh();
-            setFormData(getInitialData());
             setShow();
         })
     }
@@ -45,8 +66,7 @@ export default function EventModal(props){
     }
 
     const  HandleClose = ()=> {
-        setFormData(getInitialData());
-        setShow();
+         setShow();
     }
 
     return (
@@ -92,7 +112,7 @@ export default function EventModal(props){
             <FormGroup className="event-modal__body__buttons">
                 
             <Button onClick={CrearEvento}>
-                <img src={Check} alt="ok"/>
+               {loading ?  <Spinner animation="border" variant="light"/> : <img src={Check} alt="ok" />} 
             </Button>
             
             <Button onClick={HandleClose}>
@@ -110,9 +130,9 @@ function getInitialData(date){
     const today = new Date(Date.now());
 
     return {
-        fechaInicio: today,
-        fechaFin: today,
-        titulo: "",
+        fechaInicio: date || today,
+        fechaFin: date || today,
+        titulo: "" ,
         allDay: false
     }
 }

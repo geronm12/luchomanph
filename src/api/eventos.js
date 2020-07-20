@@ -22,6 +22,7 @@ export function GetEventos(month){
 
 export function CreateEvento(evento){
 
+  
     const url = `${PATH}/crearEvento`;
 
     const params = {
@@ -41,8 +42,8 @@ export function DeleteEvento(id){
     
     const url = `${PATH}/eliminarEvento?id=${id}`;
     const params = {
-        headers:{
         method: 'DELETE',
+        headers:{
         Authorization: `Bearer ${getTokenApi()}`
          }
     };

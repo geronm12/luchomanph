@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Modal, Button, Form, Spinner} from "react-bootstrap";
 import {values,size} from "lodash";
 import {toast} from "react-toastify";
+import RegisterModal from "../RegisterModal";
+
 import {Sigin, setTokenApi} from "../../../api/login";
 import "./LoginModal.scss";
 
@@ -15,6 +17,8 @@ export default function LoginModal (props){
     const [loading, setLoading] = useState(false)
 
     const [show, setShow] = useState(true);
+
+    const [showRegister, setShowRegister] = useState(false);
 
     function onClick(e){
         e.preventDefault()
@@ -72,13 +76,15 @@ export default function LoginModal (props){
            <Form.Group className="button-div">
           <Button onClick={onClick}> 
           {loading  ? <Spinner animation="border" variant="light"/> 
-          
-          : 
+           : 
           "Iniciar Sesión"
           }</Button> 
-           
         </Form.Group>
-        </Modal.Body>
+            <Form.Group className="register-div">
+            <Button  onClick={() => setShowRegister(true)}>Registrarse</Button>
+            </Form.Group>
+         <RegisterModal show={showRegister} setShow={setShowRegister}/>
+          </Modal.Body>
         </Modal>
   
     )

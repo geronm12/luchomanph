@@ -3,7 +3,7 @@ import {Form, FormGroup, FormControl, Button, Spinner} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
 import {toast} from "react-toastify";
 import {CreatePosts, DeletePost, UpdatePost} from "../../../api/posts";
-
+import {isNull, isEmpty} from "lodash";
 import Check from "../../../assets/svg/check-white-36dp.svg";
 import Close from "../../../assets/svg/close-white-36dp.svg";
 import Camara from "../../../assets/png/outline_add_a_photo_white_36dp.png";
@@ -42,7 +42,19 @@ export  function AltaPosts(props) {
 
 
     function onCreate(){
-        setLoading(true);
+        
+        if(isNull(form.titulo) || isEmpty (form.titulo)){
+            toast.warning("El titulo es obligatorio");
+        }
+
+        if(isNull(form.carpeta) || isEmpty (form.carpeta)){
+            toast.warning("La carpeta es obligatoria");
+        }
+  
+        if(!files){
+            toast.warning("Las fotos son obligatorias");
+        }else{
+         setLoading(true);
         CreatePosts(files, form).then(response => {
             setLoading(false);
             toast.success("Post creado con éxito");
@@ -60,6 +72,7 @@ export  function AltaPosts(props) {
             setRefreshPosts(true);
             setShow(false);
         });
+     }
     }
 
 

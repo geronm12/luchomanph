@@ -63,6 +63,26 @@ export function isUserLogedApi(){
     return JwtDecode(token);
 }
 
+export function Register(usuario){
+    const url = `${PATH}/registro`;
+
+    const params = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(usuario)
+    };
+
+    return fetch(url, params).then(response => {
+        return response.json()
+    }).then(res => {
+        return res;
+    }).catch(err => {
+        return err;
+    });
+
+}
 
  function isExpired(token) {
     const {exp} = JwtDecode(token);

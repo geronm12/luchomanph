@@ -134,7 +134,6 @@ export default function Photo(props) {
             {map(fotos,(foto, index) => ( 
             <Carousel.Item key={index} className="photo__carrousel__item">
             <img
-              className="d-block w-100"
               src={foto.fotoUrl}
               alt= ""
             />

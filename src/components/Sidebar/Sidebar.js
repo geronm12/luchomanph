@@ -9,7 +9,11 @@ import Blog from "../../assets/svg/description-white-36dp.svg";
 import Album from "../../assets/svg/collections-white-36dp.svg";
 import Home from "../../assets/svg/home-white-36dp.svg";
 import Poff from "../../assets/svg/power_settings_new-white-36dp.svg";
-import Lente from "../../assets/png/aperture_24123.png";
+import HomeActive from "../../assets/png/home_orange.png";
+import AlbumActive from "../../assets/png/collections_orange.png";
+import BlogActive from "../../assets/png/description_orange.png";
+
+ 
 
 
 export default function Sidebar(props) {
@@ -28,15 +32,15 @@ export default function Sidebar(props) {
            <ListGroup as="ul">
            
             <Link to="/" className= {"sidebar__item " + (active === 1 ? "pressed" : "")}>
-                <Image src={Home}/>
+                { active === 1 ?  <Image src={HomeActive} className="active"/> :  <Image src={Home}/>}
                 
             </Link>        
             <Link to="/albums" className={"sidebar__item " + (active === 3 ? "pressed" : "")} >
-                <Image src={Album}/>
+               {active === 3 ?  <Image src={AlbumActive} className="active"/> :  <Image src={Album}/>}
                
             </Link>
             <Link to="/posts" className={"sidebar__item " + (active === 2 ? "pressed" : "")}>
-                <Image src={Blog}/> 
+               {active === 2 ?  (<Image src={BlogActive} className="active"/>)  :  (<Image src={Blog}/>) }
              
             </Link>  
              <ListGroup.Item action  className="sidebar__item" >

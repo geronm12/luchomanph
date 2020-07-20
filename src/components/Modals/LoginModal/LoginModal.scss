@@ -58,7 +58,7 @@
             }
                 
 
-            .button-div.form-group{
+            .button-div.form-group {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -90,6 +90,37 @@
                     
             }
        
+            .register-div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            
+                button{
+                    width: 300px;
+                  
+                    background-color: transparent;
+                    font-weight: bold;
+                    font-size: 15px;
+                    border: none;
+                 
+                    &:focus{
+                        box-shadow: none !important;
+                       
+                    }
+
+                    &:active, &:visited{
+                        background-color:#3c3657 !important;
+                    }
+                    
+                    &:hover{
+                        background-color: #3c3657;
+                        color: white;
+                    }
+
+                }
+
+                         
+            }
         
         }
 
